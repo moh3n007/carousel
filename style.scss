@@ -33,21 +33,40 @@ body {
     // background-color: yellowgreen;
 }
 .carousel {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     padding: 20px;
 
-    &__image {
+    &__wrapper {
+        position: relative;
         width: 36.76470588235294%;
+        padding-top: 36.76470588235294%;
+        overflow: hidden;
+    }
+
+    &__image {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: -100%;
+        transition: all 0.3s ease;
 
         &--layout {
             position: relative;
             padding-top: 100%;
+            background-color: tan;
+        }
+
+        &--link {
+            text-decoration: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
             top: 0;
             left: 0;
-            background-color: tan;
 
             & > img {
                 position: absolute;
@@ -58,9 +77,19 @@ body {
             }
         }
         }
-        
-}
+    
+    &__position {
+        position: absolute;
+        width: 100px;
+        height: 30px;
+        bottom: -10px;
+        background-color: red;
 
+    }
+}
+#img-1 {
+    left: 0;
+}
 
 
 .footer {

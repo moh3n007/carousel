@@ -54,6 +54,7 @@ body {
 }
 
 .carousel {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -67,23 +68,54 @@ body {
   padding: 20px;
 }
 
-.carousel__image {
+.carousel__wrapper {
+  position: relative;
   width: 36.76470588235294%;
+  padding-top: 36.76470588235294%;
+  overflow: hidden;
+}
+
+.carousel__image {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: -100%;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .carousel__image--layout {
   position: relative;
   padding-top: 100%;
-  top: 0;
-  left: 0;
   background-color: tan;
 }
 
-.carousel__image--layout > img {
+.carousel__image--link {
+  text-decoration: none;
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
+  left: 0;
+}
+
+.carousel__image--link > img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.carousel__position {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  bottom: -10px;
+  background-color: red;
+}
+
+#img-1 {
   left: 0;
 }
 
