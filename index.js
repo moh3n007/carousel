@@ -45,6 +45,23 @@ window.addEventListener("load" , () => {
 
                 } , 3000);
             })();
+            this.slidePosition = (() => {
+                setInterval(() => {
+                    let len = this.images.length;
+                    for(let i = 0;i < len; ++i) {
+                        let imgId = '#img-' + (i+1);
+                        let img = document.querySelector(imgId);
+                        // console.log(img.style.visibility)
+                        let imgPosId = '#pos-img' + (i+1);
+                        let imgPos = document.querySelector(imgPosId);
+                        if(img.style.visibility === 'visible') {
+                            imgPos.children['here'].style.opacity = 1;
+                        }else {
+                            imgPos.children['here'].style.opacity = 0;
+                        }
+                    }
+                } , 3000)
+            })()
         }
     }
 

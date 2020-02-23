@@ -8,10 +8,12 @@ body,html {
 }
 body {
     display: flex;
+    justify-content: center;
 }
 .wrapper {
     display: flex;
     flex: 1;
+    max-width: 1250px;
 }
 .master {
     display: flex;
@@ -80,17 +82,54 @@ body {
     
     &__position {
         position: absolute;
-        width: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 150px;
         height: 30px;
-        bottom: -10px;
-        background-color: red;
+        bottom: 15px;
+
+        &--wrapper {
+            position: relative;
+            width: 12px;
+            height: 12px;
+            margin: 0 5px
+        }
+
+        &--here {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            background-color: #bbbbbb;
+            cursor: pointer;
+        }
+
+        &--not-here {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            border:2px solid #bbbbbb;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        
 
     }
 }
 #img-1 {
     left: 0;
 }
-
+#pos-img1 > .carousel__position--here {
+    opacity: 1;
+}
 
 .footer {
     width: 100%;
