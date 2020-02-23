@@ -1,0 +1,38 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body,html {
+    width: 100vw;
+    height: 100vh;
+}
+body {
+    display: flex;
+}
+.wrapper {
+    display: flex;
+    flex: 1;
+}
+.master {
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 1;
+}
+.header {
+    align-self: flex-start;
+    width: 100%;
+    min-height: 100px;
+
+    // background-color: turquoise;
+}
+.container {
+    flex-grow: 1;
+    width: 100%;
+    min-height: 200px;
+    // background-color: yellowgreen;
+}
+.footer {
+    width: 100%;
+    min-height: 150px;
+    // background-color: tan;
+}
