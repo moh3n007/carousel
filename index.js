@@ -186,6 +186,48 @@ window.addEventListener("load" , () => {
                     console.log(nextVisibleImg);
                     this.setInterval((id + 1));
                 })
+                btnLeft.addEventListener('click' , () => {
+                    for(let i = 0;i < length; ++i) {
+                        let imgId = '#img-' + (i+1);
+                        let nextImgId = '#img-' + (i);
+                        let dblNxtImgId = '#img-' + (i-1);
+                        if(i === 0) {
+                            nextImgId = '#img-' + length;
+                            dblNxtImgId = '#img-' + (length - 1);
+                        } else if(i === 1) {
+                            dblNxtImgId = '#img-' + length;
+                        }
+                        let img = document.querySelector(imgId);
+                        if(img.style.visibility === 'visible') {
+                            visibleImg = img;
+                            nextVisibleImg = document.querySelector(nextImgId);
+                            doubleNextVisibleImg = document.querySelector(dblNxtImgId);
+                            id = (i + 1);
+                        }
+                    }
+                    this.intervals.forEach(clearInterval);
+                    this.intervals = [];
+                    for(let j = 1;j <= length; ++j) {
+                        let id = 'pos-img' + j;
+                        let idImg = 'img-' + j;
+                        let pos = document.getElementById(id);
+                        pos.children['here'].style.opacity = 0;
+
+                        let img = document.getElementById(idImg);
+                        img.setAttribute('style' , 'left: -100%;visibility: hidden');
+                    }
+                    visibleImg.setAttribute('style' , 'left: -100%;visibility: hidden');
+                    doubleNextVisibleImg.setAttribute('style' , 'left: 100%;visibility: hidden')
+                    let imgPosId = 'pos-img' + (id + 1);
+                    if(id === length) {
+                        imgPosId = 'pos-img' + 1;
+                    }
+                    let imgPos = document.getElementById(imgPosId);
+                    nextVisibleImg.setAttribute('style' , 'left: 0;visibility: visible');
+                    imgPos.children['here'].style.opacity = 1;
+                    console.log(nextVisibleImg);
+                    this.setInterval((id + 1));
+                })
             }
             this.animSlide();
             this.carouselMouseEvent();
