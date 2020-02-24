@@ -108,7 +108,41 @@ window.addEventListener("load" , () => {
                     })
                 };
             }
+            this.carouselMouseEvent = () => {
+
+                let carousel = document.getElementById('carousel');
+                let btnRight = document.getElementById('btnRight');
+                let btnLeft = document.getElementById('btnLeft');
+
+                carousel.addEventListener('mouseover' , () => {
+                    btnRight.style.visibility = 'visible';
+                    btnRight.style.opacity = 1;
+                    btnRight.style.right = '20px';
+
+                    btnLeft.style.visibility = 'visible';
+                    btnLeft.style.opacity = 1;
+                    btnLeft.style.left = '20px';
+                });
+
+                carousel.addEventListener('mouseout' , () => {
+                    btnRight.style.visibility = 'hidden';
+                    btnRight.style.opacity = 0;
+                    btnRight.style.right = '0';
+
+                    btnLeft.style.visibility = 'hidden';
+                    btnLeft.style.opacity = 0;
+                    btnLeft.style.left = '0';
+                })
+            }
+            // this.btnCarousel = () => {
+            //     let btnRight = document.getElementById('btnRight');
+            //     let btnLeft = document.getElementById('btnLeft');
+            //     btnRight.addEventListener('click' , () => {
+            //         let
+            //     })
+            // }
             this.animSlide();
+            this.carouselMouseEvent();
             // this.clickCarouselPos();
         }
     }
