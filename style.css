@@ -154,9 +154,15 @@ body {
   left: 0;
   border-radius: 50%;
   border: 2px solid #bbbbbb;
-  cursor: pointer;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+}
+
+.carousel__position--empty {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 #img-1 {

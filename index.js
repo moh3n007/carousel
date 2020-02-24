@@ -20,9 +20,16 @@ window.addEventListener("load" , () => {
     class slideShow {
         constructor() {
             this.images = images;
-            this.animSlide = (() => {
-                let i = 1
-                setInterval(() => {
+            this.startCarousel = 1;
+            this.intervals = [];
+            this.animSlide = () => {
+                this.clickCarouselPos();
+                this.setInterval(this.startCarousel);
+                
+            };
+
+            this.setInterval = (i) => {
+                let int = setInterval(() => {
                     if (i === this.images.length + 1) {
                         i = 1;
                     } 
@@ -37,16 +44,16 @@ window.addEventListener("load" , () => {
                     let img = document.getElementById(imgID);
                     let imgNext = document.getElementById(imgNextID);
                     let imgPvr = document.getElementById(imgPrvID);
-                    // console.log(img , imgNext);
                     img.setAttribute('style' , 'left: 100%;visibility: hidden');
                     imgNext.setAttribute('style' , 'left: 0;visibility: visible');
                     imgPvr.setAttribute('style' , 'left: -100%;visibility: hidden');
                     i++;
 
+                    this.carouselPosition();
                 } , 3000);
-            })();
-            this.slidePosition = (() => {
-                setInterval(() => {
+                this.intervals.push(int);
+            }
+            this.carouselPosition = () => {
                     let len = this.images.length;
                     for(let i = 0;i < len; ++i) {
                         let imgId = '#img-' + (i+1);
@@ -60,8 +67,49 @@ window.addEventListener("load" , () => {
                             imgPos.children['here'].style.opacity = 0;
                         }
                     }
-                } , 3000)
-            })()
+            };
+            this.clickCarouselPos = () => {
+                let length = this.images.length;
+                for(let i = 0;i < length; ++i) {
+                    let posId = 'pos' + (i+1);
+                    let posImg = document.getElementById(posId);
+                    posImg.addEventListener('click' , () => {
+                        this.intervals.forEach(clearInterval);
+                        this.intervals = []
+                        for(let j = 1;j <= length; ++j) {
+                            let id = 'pos-img' + j;
+                            let idImg = 'img-' + j;
+                            let pos = document.getElementById(id);
+                            pos.children['here'].style.opacity = 0;
+
+                            let img = document.getElementById(idImg);
+                            img.setAttribute('style' , 'left: -100x;visibility: hidden');
+
+                        }
+                        console.log(posImg);
+                        let imgPosId = 'pos-img' + (i+1);
+                        let imgId = 'img-' + (i+1);
+                        let nextImgId = 'img-' + (i+2);
+                        let preImgId;
+                        if(i === 0) {
+                            preImgId = 'img-' + length;
+                        } else if(i === length-1) {
+                            nextImgId = 'img-1';
+                            preImgId = 'img-' + (i);
+                        }else {
+                            preImgId = 'img-' + (i);
+                        }
+                        let imgPos = document.getElementById(imgPosId);
+                        let img = document.getElementById(imgId);
+                        img.setAttribute('style' , 'left: 0;visibility: visible');
+                        imgPos.children['here'].style.opacity = 1;
+                        this.setInterval((i+1));
+                        console.log(this.intervals)
+                    })
+                };
+            }
+            this.animSlide();
+            // this.clickCarouselPos();
         }
     }
 
